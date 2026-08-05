@@ -74,7 +74,9 @@ codyssey-python-quiz/
 ├── .python-version      # 실행에 사용할 Python 버전 (3.10)
 ├── .gitignore
 ├── README.md
-└── MISSION.md           # 과제 요구 사항
+├── MISSION.md           # 과제 요구 사항
+└── docs/
+    └── screenshots/     # 개발 환경, 실행 화면, 커밋 이력 캡처
 ```
 
 ## 클래스 구조
@@ -117,6 +119,28 @@ codyssey-python-quiz/
 | `quizzes[].choices`  | 문자열 배열      | 선택지 4개                                       |
 | `quizzes[].answer`   | 정수             | 정답 번호 (1~4)                                  |
 | `best_score`         | 정수 또는 `null` | 최고 정답 개수. 아직 퀴즈를 풀지 않았으면 `null` |
+
+## 실행 화면
+
+### 개발 환경
+
+![개발 환경](docs/screenshots/development_environment.png)
+
+### 퀴즈 추가
+
+![퀴즈 추가](docs/screenshots/add_quiz.png)
+
+### 퀴즈 목록
+
+![퀴즈 목록](docs/screenshots/quiz_list.png)
+
+### 퀴즈 풀기와 점수 확인
+
+![퀴즈 풀기와 점수 확인](docs/screenshots/play.png)
+
+### 커밋 이력
+
+![커밋 이력](docs/screenshots/git_log.png)
 
 ## 확인한 내용
 
