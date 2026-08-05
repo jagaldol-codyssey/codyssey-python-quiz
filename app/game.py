@@ -113,6 +113,16 @@ class QuizGame:
         self.save()
         print(f'퀴즈가 추가되었습니다! (현재 {len(self.quizzes)}개)')
 
+    def list_quizzes(self):
+        """등록된 퀴즈 목록을 출력한다."""
+        if not self.quizzes:
+            print('등록된 퀴즈가 없습니다.')
+            return
+
+        print(f'\n등록된 퀴즈 목록 (총 {len(self.quizzes)}개)')
+        for number, quiz in enumerate(self.quizzes, 1):
+            print(f'[{number}] {quiz.question}')
+
     def run(self):
         """메뉴를 반복해서 보여 주고 선택한 기능을 실행한다."""
         while True:
@@ -122,6 +132,8 @@ class QuizGame:
                 self.play()
             elif choice == 2:
                 self.add_quiz()
+            elif choice == 3:
+                self.list_quizzes()
             elif choice == 5:
                 print('게임을 종료합니다.')
                 break
