@@ -20,6 +20,14 @@ class Quiz:
         """입력한 번호가 정답이면 True를 돌려준다."""
         return selected == self.answer
 
+    def to_dict(self):
+        """JSON 파일에 저장할 수 있도록 딕셔너리로 바꾼다."""
+        return {
+            'question': self.question,
+            'choices': self.choices,
+            'answer': self.answer,
+        }
+
 
 # 주제: 개발자 기본 도구 (터미널, 파일 권한, Git, Python)
 DEFAULT_QUIZZES = [

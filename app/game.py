@@ -1,13 +1,49 @@
 """메뉴와 게임 진행을 담당하는 QuizGame 클래스"""
 
-from .quiz import DEFAULT_QUIZZES
+import json
+
+from .quiz import DEFAULT_QUIZZES, Quiz
+
+# 데이터 파일은 프로젝트 루트에 둔다.
+STATE_FILE = 'state.json'
 
 
 class QuizGame:
     """퀴즈 목록을 관리하고 메뉴를 진행한다."""
 
     def __init__(self):
+        self.quizzes = []
+        self.load()
+
+    def load(self):
+        """state.json에서 퀴즈를 불러온다. 없거나 손상되었으면 기본 퀴즈를 쓴다."""
+        try:
+            with open(STATE_FILE, 'r', encoding='utf-8') as file:
+                data = json.load(file)
+            self.quizzes = [
+                Quiz(item['question'], item['choices'], item['answer'])
+                for item in data['quizzes']
+            ]
+            print(f'저장된 데이터를 불러왔습니다. (퀴즈 {len(self.quizzes)}개)')
+        except FileNotFoundError:
+            print('저장된 파일이 없어 기본 퀴즈로 시작합니다.')
+            self.use_default_quizzes()
+        except (json.JSONDecodeError, TypeError, KeyError) as error:
+            print(f'저장 파일을 읽을 수 없어 기본 퀴즈로 복구합니다. ({error})')
+            self.use_default_quizzes()
+
+    def use_default_quizzes(self):
+        """기본 퀴즈 데이터로 초기화한다."""
         self.quizzes = list(DEFAULT_QUIZZES)
+
+    def save(self):
+        """퀴즈를 state.json에 UTF-8로 저장한다."""
+        data = {'quizzes': [quiz.to_dict() for quiz in self.quizzes]}
+        try:
+            with open(STATE_FILE, 'w', encoding='utf-8') as file:
+                json.dump(data, file, ensure_ascii=False, indent=2)
+        except OSError as error:
+            print(f'저장에 실패했습니다. ({error})')
 
     def input_number(self, prompt, minimum, maximum):
         """정해진 범위의 숫자를 입력받는다. 잘못된 입력이면 다시 입력받는다."""
@@ -46,3 +82,4 @@ class QuizGame:
                 print('게임을 종료합니다.')
                 break
             print('아직 준비 중인 기능입니다.')
+        self.save()
