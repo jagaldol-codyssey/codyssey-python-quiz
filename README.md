@@ -119,3 +119,8 @@ codyssey-python-quiz/
 | `quizzes[].choices` | 문자열 배열 | 선택지 4개 |
 | `quizzes[].answer` | 정수 | 정답 번호 (1~4) |
 | `best_score` | 정수 또는 `null` | 최고 정답 개수. 아직 퀴즈를 풀지 않았으면 `null` |
+
+## 확인한 내용
+
+- 저장소를 별도 디렉터리에 `git clone`한 뒤 `uv run python -m app.main`으로 그대로 실행되는 것을 확인했다.
+- Python 3.10 환경에서 모든 기능이 동작하는 것을 확인했다.
