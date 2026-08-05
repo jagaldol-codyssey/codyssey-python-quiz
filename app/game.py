@@ -62,6 +62,14 @@ class QuizGame:
                 continue
             return number
 
+    def input_text(self, prompt):
+        """비어 있지 않은 문장을 입력받는다."""
+        while True:
+            value = input(prompt).strip()
+            if value != '':
+                return value
+            print('빈 값은 입력할 수 없습니다. 다시 입력하세요.')
+
     def show_menu(self):
         """메뉴를 출력한다."""
         print()
@@ -92,6 +100,19 @@ class QuizGame:
 
         print(f'\n결과: {len(self.quizzes)}문제 중 {score}문제 정답!')
 
+    def add_quiz(self):
+        """새 퀴즈를 입력받아 목록에 넣고 파일에 저장한다."""
+        print('\n새로운 퀴즈를 추가합니다.')
+        question = self.input_text('문제: ')
+        choices = []
+        for number in range(1, 5):
+            choices.append(self.input_text(f'선택지 {number}: '))
+        answer = self.input_number('정답 번호 (1-4): ', 1, 4)
+
+        self.quizzes.append(Quiz(question, choices, answer))
+        self.save()
+        print(f'퀴즈가 추가되었습니다! (현재 {len(self.quizzes)}개)')
+
     def run(self):
         """메뉴를 반복해서 보여 주고 선택한 기능을 실행한다."""
         while True:
@@ -99,6 +120,8 @@ class QuizGame:
             choice = self.input_number('선택: ', 1, 5)
             if choice == 1:
                 self.play()
+            elif choice == 2:
+                self.add_quiz()
             elif choice == 5:
                 print('게임을 종료합니다.')
                 break
