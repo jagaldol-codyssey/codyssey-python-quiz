@@ -1,4 +1,4 @@
-"""퀴즈 한 문제를 표현하는 Quiz 클래스"""
+"""퀴즈 한 문제를 표현하는 Quiz 클래스와 기본 퀴즈 데이터"""
 
 
 class Quiz:
@@ -19,3 +19,38 @@ class Quiz:
     def is_correct(self, selected):
         """입력한 번호가 정답이면 True를 돌려준다."""
         return selected == self.answer
+
+
+# 주제: 개발자 기본 도구 (터미널, 파일 권한, Git, Python)
+DEFAULT_QUIZZES = [
+    Quiz(
+        '현재 작업 디렉터리의 절대 경로를 출력하는 명령은?',
+        ['cd', 'pwd', 'ls', 'mkdir'],
+        2,
+    ),
+    Quiz(
+        '숨김 파일까지 포함해 파일 정보를 자세히 보는 명령은?',
+        ['ls', 'ls -h', 'ls -la', 'ls --detail'],
+        3,
+    ),
+    Quiz(
+        '새 Git 저장소를 만들면서 기본 브랜치를 main으로 지정하는 명령은?',
+        ['git start main', 'git init -b main', 'git branch main', 'git clone main'],
+        2,
+    ),
+    Quiz(
+        '파일 권한 644가 뜻하는 것은?',
+        [
+            '누구나 읽고 쓰고 실행할 수 있다',
+            '소유자는 읽기와 쓰기, 나머지는 읽기만 할 수 있다',
+            '소유자만 읽을 수 있다',
+            '아무도 읽을 수 없다',
+        ],
+        2,
+    ),
+    Quiz(
+        'Python의 input()이 입력의 끝을 만나면 발생하는 예외는?',
+        ['ValueError', 'KeyboardInterrupt', 'EOFError', 'StopIteration'],
+        3,
+    ),
+]

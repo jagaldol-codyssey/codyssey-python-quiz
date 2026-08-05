@@ -1,8 +1,13 @@
 """메뉴와 게임 진행을 담당하는 QuizGame 클래스"""
 
+from .quiz import DEFAULT_QUIZZES
+
 
 class QuizGame:
-    """메뉴를 보여 주고 사용자가 고른 기능을 실행한다."""
+    """퀴즈 목록을 관리하고 메뉴를 진행한다."""
+
+    def __init__(self):
+        self.quizzes = list(DEFAULT_QUIZZES)
 
     def input_number(self, prompt, minimum, maximum):
         """정해진 범위의 숫자를 입력받는다. 잘못된 입력이면 다시 입력받는다."""
