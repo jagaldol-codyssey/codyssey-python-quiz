@@ -143,18 +143,21 @@ class QuizGame:
 
     def run(self):
         """메뉴를 반복해서 보여 주고 선택한 기능을 실행한다."""
-        while True:
-            self.show_menu()
-            choice = self.input_number('선택: ', 1, 5)
-            if choice == 1:
-                self.play()
-            elif choice == 2:
-                self.add_quiz()
-            elif choice == 3:
-                self.list_quizzes()
-            elif choice == 4:
-                self.show_score()
-            else:
-                print('게임을 종료합니다.')
-                break
+        try:
+            while True:
+                self.show_menu()
+                choice = self.input_number('선택: ', 1, 5)
+                if choice == 1:
+                    self.play()
+                elif choice == 2:
+                    self.add_quiz()
+                elif choice == 3:
+                    self.list_quizzes()
+                elif choice == 4:
+                    self.show_score()
+                else:
+                    print('게임을 종료합니다.')
+                    break
+        except (KeyboardInterrupt, EOFError):
+            print('\n입력이 중단되었습니다. 저장하고 종료합니다.')
         self.save()
