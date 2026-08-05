@@ -1,0 +1,6 @@
+[project]
+name = "codyssey-python-quiz"
+version = "1.0.0"
+description = "터미널에서 동작하는 개발자 도구 퀴즈 게임"
+requires-python = ">=3.10"
+dependencies = []

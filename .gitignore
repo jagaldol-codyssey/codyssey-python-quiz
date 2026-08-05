@@ -1,0 +1,5 @@
+__pycache__/
+.venv/
+.omc/
+state.json
+.DS_Store
