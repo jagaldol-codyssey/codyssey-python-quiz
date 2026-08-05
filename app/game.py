@@ -73,13 +73,35 @@ class QuizGame:
         print('5. 종료')
         print('===========================')
 
+    def play(self):
+        """저장된 퀴즈를 순서대로 출제하고 맞힌 개수를 알려준다."""
+        if not self.quizzes:
+            print('등록된 퀴즈가 없습니다. 먼저 퀴즈를 추가하세요.')
+            return
+
+        print(f'\n퀴즈를 시작합니다! (총 {len(self.quizzes)}문제)')
+        score = 0
+        for number, quiz in enumerate(self.quizzes, 1):
+            quiz.show(number)
+            selected = self.input_number('정답 번호 (1-4): ', 1, 4)
+            if quiz.is_correct(selected):
+                print('정답입니다!')
+                score += 1
+            else:
+                print(f'오답입니다. 정답은 {quiz.answer}번입니다.')
+
+        print(f'\n결과: {len(self.quizzes)}문제 중 {score}문제 정답!')
+
     def run(self):
         """메뉴를 반복해서 보여 주고 선택한 기능을 실행한다."""
         while True:
             self.show_menu()
             choice = self.input_number('선택: ', 1, 5)
-            if choice == 5:
+            if choice == 1:
+                self.play()
+            elif choice == 5:
                 print('게임을 종료합니다.')
                 break
-            print('아직 준비 중인 기능입니다.')
+            else:
+                print('아직 준비 중인 기능입니다.')
         self.save()
