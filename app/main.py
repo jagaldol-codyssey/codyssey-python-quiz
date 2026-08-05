@@ -1,6 +1,6 @@
 """나만의 퀴즈 게임 실행 진입점"""
 
-from .game import QuizGame
+from app.game import QuizGame
 
 
 def main():
@@ -9,5 +9,5 @@ def main():
     game.run()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
